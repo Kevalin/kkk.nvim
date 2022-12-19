@@ -39,6 +39,8 @@ o.swapfile = false
 o.autowrite = true
 o.autoread = true
 
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
 g.netrw_banner = 0
 g.netrw_liststyle = 3
 g.netrw_winsize = 25

@@ -16,10 +16,10 @@ map('n', 'te', ':tabedit<CR>', opts)
 
 -- Move window
 map('n', '<Space>', '<C-w>w', opts)
-map('', 'sh', '<C-w>h', opts)
-map('', 'sk', '<C-w>k', opts)
-map('', 'sj', '<C-w>j', opts)
-map('', 'sl', '<C-w>l', opts)
+map('', '<C-H>', '<C-w>h', opts)
+map('', '<C-K>', '<C-w>k', opts)
+map('', '<C-J>', '<C-w>j', opts)
+map('', '<C-L>', '<C-w>l', opts)
 
 -- Resize windows
 map('n', '<C-N>', ':Lexplore<CR> :vertical resize 30<CR>', opts)
@@ -44,3 +44,6 @@ map('v', '<A-h>', ":MoveHBlock(-1)<CR>", opts)
 
 -- Delete current buffer
 map('n', '<leader>bd', "<cmd>lua require('bufdelete').bufdelete(0, true)<CR>", opts)
+
+-- open or close nvim-tree
+map('n', '<A-e>', ":NvimTreeToggle<CR>", opts)

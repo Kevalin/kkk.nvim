@@ -81,6 +81,14 @@ function M.setup()
 
     use 'famiu/bufdelete.nvim' -- delete buffer
 
+    use {
+      'nvim-tree/nvim-tree.lua', -- a file explorer
+      requires = {
+        'nvim-tree/nvim-web-devicons', -- optional, for file icons
+      },
+      -- tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    }
+
     -- Bootstrap Neovim
     if packer_bootstrap then
       print 'Restart Neovim required after installation!'

@@ -4,6 +4,7 @@ local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
 
 local protocol = require('vim.lsp.protocol')
+local util = require('lspconfig/util')
 
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
 local enable_format_on_save = function(_, bufnr)
@@ -31,9 +32,9 @@ local on_attach = function(client, bufnr)
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  --buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  -- buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  --buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
 end
 
 protocol.CompletionItemKind = {
@@ -121,7 +122,42 @@ nvim_lsp.astro.setup {
   capabilities = capabilities
 }
 
-nvim_lsp.gopls.setup {}
+nvim_lsp.gopls.setup {
+  cmd = { "gopls", "serve" },
+  filetypes = { "go", "gomod" },
+  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+    },
+  },
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    enable_format_on_save(client, bufnr)
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = { "*.go" },
+      callback = function()
+        local params = vim.lsp.util.make_range_params(nil, vim.lsp.util._get_offset_encoding())
+        params.context = { only = { "source.organizeImports" } }
+
+        local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
+        for _, res in pairs(result or {}) do
+          for _, r in pairs(res.result or {}) do
+            if r.edit then
+              vim.lsp.util.apply_workspace_edit(r.edit, vim.lsp.util._get_offset_encoding())
+            else
+              vim.lsp.buf.execute_command(r.command)
+            end
+          end
+        end
+      end,
+    })
+  end
+}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {

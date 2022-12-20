@@ -47,3 +47,6 @@ map('n', '<leader>bd', "<cmd>lua require('bufdelete').bufdelete(0, true)<CR>", o
 
 -- open or close nvim-tree
 map('n', '<A-e>', ":NvimTreeToggle<CR>", opts)
+
+-- open neogit
+map('n', '<A-g>', ":Neogit<CR>", opts)

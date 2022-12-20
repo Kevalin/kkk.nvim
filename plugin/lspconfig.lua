@@ -136,9 +136,9 @@ nvim_lsp.gopls.setup {
   },
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
-    enable_format_on_save(client, bufnr)
+    -- enable_format_on_save(client, bufnr)
 
-    vim.api.nvim_create_autocmd("BufWritePre", {
+    --[[ vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = { "*.go" },
       callback = function()
         local params = vim.lsp.util.make_range_params(nil, vim.lsp.util._get_offset_encoding())
@@ -155,7 +155,7 @@ nvim_lsp.gopls.setup {
           end
         end
       end,
-    })
+    }) ]]
   end
 }
 

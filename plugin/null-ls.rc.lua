@@ -18,7 +18,19 @@ null_ls.setup {
     null_ls.builtins.diagnostics.eslint_d.with({
       diagnostics_format = '[eslint] #{m}\n(#{c})'
     }),
-    null_ls.builtins.diagnostics.fish
+
+    null_ls.builtins.formatting.gofumpt,
+    null_ls.builtins.formatting.goimports,
+    null_ls.builtins.formatting.goimports_reviser,
+    null_ls.builtins.formatting.golines,
+
+    null_ls.builtins.formatting.yamlfmt,
+
+    null_ls.builtins.formatting.shfmt,
+
+    null_ls.builtins.formatting.protolint,
+
+    null_ls.builtins.formatting.jq,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then

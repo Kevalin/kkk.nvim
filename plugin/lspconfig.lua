@@ -65,6 +65,7 @@ protocol.CompletionItemKind = {
   '', -- TypeParameter
 }
 
+local u = require('util.init')
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -73,10 +74,14 @@ nvim_lsp.flow.setup {
   capabilities = capabilities
 }
 
+local tsserver_cmd = 'typescript-language-server'
+if u.is_win() then
+  tsserver_cmd = 'typescript-language-server.cmd'
+end
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-  cmd = { "typescript-language-server.cmd", "--stdio" },
+  cmd = { tsserver_cmd, "--stdio" },
   capabilities = capabilities
 }
 
@@ -95,7 +100,7 @@ nvim_lsp.sumneko_lua.setup {
     Lua = {
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
+        globals = { 'vim', 'pcall', 'use', 'string', 'ngx', 'pairs' },
       },
 
       workspace = {

@@ -24,14 +24,11 @@ null_ls.setup {
     null_ls.builtins.formatting.goimports_reviser,
     null_ls.builtins.formatting.golines,
 
-    null_ls.builtins.formatting.yamlfmt,
-
     null_ls.builtins.formatting.shfmt,
 
     null_ls.builtins.formatting.protolint,
-
-    null_ls.builtins.formatting.jq,
   },
+  -- debug = true,
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })

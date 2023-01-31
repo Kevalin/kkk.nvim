@@ -25,7 +25,7 @@ map('', '<C-L>', '<C-w>l', opts)
 map('n', '<C-N>', ':Lexplore<CR> :vertical resize 30<CR>', opts)
 
 -- Open term
-map('n', '<leader>t', ':sp<CR> :term<CR> :resize 20N<CR> i', opts)
+map('n', '<leader>t', ':ToggleTerm<CR>', opts)
 
 map('t', '<Esc>', '<C-\\><C-n>', opts)
 

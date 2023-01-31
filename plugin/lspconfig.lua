@@ -65,7 +65,7 @@ protocol.CompletionItemKind = {
   '', -- TypeParameter
 }
 
-local u = require('util.init')
+local which_os = require('util/which_os')
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -75,7 +75,7 @@ nvim_lsp.flow.setup {
 }
 
 local tsserver_cmd = 'typescript-language-server'
-if u.is_win() then
+if which_os.is_win() then
   tsserver_cmd = 'typescript-language-server.cmd'
 end
 nvim_lsp.tsserver.setup {

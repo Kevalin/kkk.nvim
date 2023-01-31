@@ -2,10 +2,10 @@ require('kevalin.base')
 require('kevalin.maps')
 require('kevalin.plugins').setup()
 
-local u = require('util.init')
-if u.is_mac() then
+local which_os = require('util/which_os')
+if which_os.is_mac() then
   require('kevalin.macos')
 end
-if u.is_win() then
+if which_os.is_win() then
   require('kevalin.windows')
 end

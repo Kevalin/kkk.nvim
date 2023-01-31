@@ -89,6 +89,11 @@ function M.setup()
       -- tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
 
+    use {
+      "akinsho/toggleterm.nvim", -- manage term
+      tag = '*',
+    }
+
     -- Bootstrap Neovim
     if packer_bootstrap then
       print 'Restart Neovim required after installation!'

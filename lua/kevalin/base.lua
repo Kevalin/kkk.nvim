@@ -1,14 +1,5 @@
 local o = vim.o
 local g = vim.g
-local u = require('util.init')
-
-if u.is_win() then
-  o.shell = 'powershell'
-end
-
-if u.is_mac() then
-  o.shell = 'zsh'
-end
 
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
@@ -69,3 +60,11 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   pattern = '*',
   command = "set nopaste"
 })
+
+local which_os = require('util/which_os')
+if which_os.is_win() then
+  vim.o.shell = "pwsh.exe"
+end
+if which_os.is_mac() or which_os.is_linux() then
+  vim.o.shell = "zsh"
+end

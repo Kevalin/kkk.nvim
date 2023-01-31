@@ -73,7 +73,7 @@ function M.setup()
     use 'dinhhuy258/git.nvim' -- For git blame & browse
 
     use 'numToStr/Comment.nvim' -- Comment
-    use 'kg8m/vim-simple-align' -- Align tool
+    -- use 'kg8m/vim-simple-align' -- Align tool
     use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
     use { 'ur4ltz/surround.nvim' }
     use 'fedepujol/move.nvim'
@@ -93,6 +93,8 @@ function M.setup()
       "akinsho/toggleterm.nvim", -- manage term
       tag = '*',
     }
+
+    use { 'Vonr/align.nvim' }
 
     -- Bootstrap Neovim
     if packer_bootstrap then

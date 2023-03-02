@@ -38,4 +38,5 @@ Use pure lua nvim plugins.
 | [telescope-file-browser.nvim](https://github.com/nvim-telescope/telescope-file-browser.nvim) | File Browser extension for telescope.nvim |
 | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Find, Filter, Preview, Pick. All lua, all the time |
 | [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) | 🏙 A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins. Includes additional themes for Kitty, Alacritty, iTerm and Fish |
+| [tomato-timer.nvim](https://github.com/Kevalin/tomato-timer.nvim) | Focus tomato timer 🍅 🕗 🎯 |
 

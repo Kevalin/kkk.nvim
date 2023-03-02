@@ -1,6 +1,6 @@
 # kkk.nvim
 
-A very fast Lua based Neovim configuration that uses buildin lsp for intellisense.
+A very fast pure Lua based Neovim configuration that uses buildin lsp for intellisense.
 
 ## Plugins
 
